@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Kosugi_Maru, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/Footer";
+import { PostProvider } from "@/context/PostContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const kosugiMaru = Kosugi_Maru({
+  variable: "--font-kosugi-maru",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${kosugiMaru.variable} ${notoSansJP.variable} antialiased bg-[#FFFCEB]`}
       >
-        {children}
+        <PostProvider>
+          {children}
+          <Footer />
+        </PostProvider>
       </body>
     </html>
   );
