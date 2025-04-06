@@ -39,7 +39,7 @@ export default function Profile() {
               />
             </DialogTrigger>
             <DialogContent className="fixed inset-0 m-auto w-[90vw] max-w-[400px] h-fit">
-              <DialogTitle>{post.artist}</DialogTitle>
+              <DialogTitle></DialogTitle>
               <PostCard post={post} variant="dialog" />
             </DialogContent>
           </Dialog>
