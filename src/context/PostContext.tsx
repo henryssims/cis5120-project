@@ -15,6 +15,7 @@ export interface Post {
 interface PostContextType {
   posts: Post[];
   addPost: (post: Omit<Post, "id">) => void;
+  deletePost: (postId: number) => void;
 }
 
 const defaultPosts: Post[] = [
@@ -50,6 +51,7 @@ const defaultPosts: Post[] = [
 const PostContext = createContext<PostContextType>({
   posts: defaultPosts,
   addPost: () => {},
+  deletePost: () => {},
 });
 
 export function PostProvider({ children }: { children: React.ReactNode }) {
@@ -63,8 +65,12 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
     setPosts((prevPosts) => [postWithId, ...prevPosts]);
   };
 
+  const deletePost = (postId: number) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+  };
+
   return (
-    <PostContext.Provider value={{ posts, addPost }}>
+    <PostContext.Provider value={{ posts, addPost, deletePost }}>
       {children}
     </PostContext.Provider>
   );

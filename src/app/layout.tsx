@@ -3,6 +3,7 @@ import { Kosugi_Maru, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { PostProvider } from "@/context/PostContext";
+import { ClickProvider } from "@/context/ClickContext";
 
 const kosugiMaru = Kosugi_Maru({
   variable: "--font-kosugi-maru",
@@ -31,10 +32,12 @@ export default function RootLayout({
       <body
         className={`${kosugiMaru.variable} ${notoSansJP.variable} antialiased bg-[#FFFCEB]`}
       >
-        <PostProvider>
-          {children}
-          <Footer />
-        </PostProvider>
+        <ClickProvider>
+          <PostProvider>
+            {children}
+            <Footer />
+          </PostProvider>
+        </ClickProvider>
       </body>
     </html>
   );
