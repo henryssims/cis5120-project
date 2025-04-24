@@ -122,7 +122,7 @@ export default function Discover() {
             >
               <Music className="w-8 h-8" />
               <div className="flex flex-col items-center gap-1">
-                <p className="font-medium text-lg">{artist}</p>
+                <p className="font-medium text-lg text-center">{artist}</p>
                 <motion.div 
                   whileHover={{ scale: 1.1 }}
                   className={`flex items-center gap-1 rounded-full px-3 py-1 ${

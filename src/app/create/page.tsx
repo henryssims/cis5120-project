@@ -7,11 +7,11 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { usePosts, User } from "@/context/PostContext";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Create() {
+function CreateContent() {
   const { addPost, editPost, posts, getFriends } = usePosts();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -322,5 +322,13 @@ export default function Create() {
         <p>{postId ? "Save Changes" : "Publish Post"}</p>
       </motion.button>
     </motion.div>
+  );
+}
+
+export default function Create() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CreateContent />
+    </Suspense>
   );
 }
