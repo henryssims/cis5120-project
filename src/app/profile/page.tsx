@@ -31,7 +31,7 @@ export default function Profile() {
           <Dialog key={post.id}>
             <DialogTrigger className="w-[100px] h-[100px] overflow-hidden">
               <Image 
-                src={post.image} 
+                src={post.images[0]} 
                 alt={post.artist} 
                 width={100} 
                 height={100} 
@@ -40,7 +40,7 @@ export default function Profile() {
             </DialogTrigger>
             <DialogContent className="fixed inset-0 m-auto w-[90vw] max-w-[400px] h-fit">
               <DialogTitle></DialogTitle>
-              <PostCard post={post} variant="dialog" />
+              <PostCard post={post} variant="dialog" showActions={true} />
             </DialogContent>
           </Dialog>
         ))}
