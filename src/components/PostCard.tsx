@@ -107,7 +107,7 @@ export function PostCard({ post, variant = "feed", showActions = false }: PostCa
       <motion.div 
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
-        className={`flex items-center gap-2 absolute top-12 right-2 rounded-full px-2 py-1 border-1 border-black ${
+        className={`flex items-center gap-2 absolute top-12 right-2 rounded-full px-2 py-1 border-1 border-black z-10 ${
           post.rating >= 7 ? 'bg-[#B3FFBB]' : 
           post.rating >= 4 ? 'bg-[#FFE5B3]' : 
           'bg-[#FBC3CF]'

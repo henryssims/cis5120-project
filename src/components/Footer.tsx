@@ -13,7 +13,7 @@ export function Footer() {
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="w-full h-20 fixed bottom-0 border-t-1 border-black flex items-center justify-center gap-10 bg-[#FFFCEB]"
+      className="w-full h-20 fixed bottom-0 z-20 border-t-1 border-black flex items-center justify-center gap-10 bg-[#FFFCEB]"
     >
       <Link href="/">
         <motion.div

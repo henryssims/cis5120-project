@@ -38,7 +38,7 @@ export default function Profile() {
                 className="object-cover w-full h-full" 
               />
             </DialogTrigger>
-            <DialogContent className="fixed inset-0 m-auto w-[90vw] max-w-[400px] h-fit">
+            <DialogContent className="fixed [@media(hover:hover)]:inset-0 [@media(hover:hover)]:m-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[400px] h-min">
               <DialogTitle></DialogTitle>
               <PostCard post={post} variant="dialog" showActions={true} />
             </DialogContent>

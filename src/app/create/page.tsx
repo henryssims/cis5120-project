@@ -26,6 +26,7 @@ function CreateContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFriends, setSelectedFriends] = useState<User[]>([]);
   const [showFriendsList, setShowFriendsList] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const friends = getFriends();
   const filteredFriends = friends.filter(friend => 
@@ -83,6 +84,26 @@ function CreateContent() {
   };
 
   const handlePublish = () => {
+    const missingFields = [];
+    if (images.length === 0) {
+      missingFields.push("image");
+    }
+    if (!artist.trim()) {
+      missingFields.push("artist name");
+    }
+
+    if (missingFields.length > 0) {
+      // Show error state by adding a shake animation to the publish button
+      const button = document.querySelector('.publish-button');
+      button?.classList.add('shake');
+      setTimeout(() => button?.classList.remove('shake'), 500);
+
+      // Show error message
+      setErrorMessage(`Please add ${missingFields.join(" and ")}`);
+      setTimeout(() => setErrorMessage(null), 3000);
+      return;
+    }
+
     if (postId) {
       // Edit existing post
       editPost(Number(postId), {
@@ -317,10 +338,23 @@ function CreateContent() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handlePublish}
-        className="bg-[#FBC3CF] rounded-full p-4 border-2 border-black flex justify-center gap-4"
+        className="bg-[#FBC3CF] rounded-full p-4 border-2 border-black flex justify-center gap-4 publish-button"
       >
         <p>{postId ? "Save Changes" : "Publish Post"}</p>
       </motion.button>
+
+      <AnimatePresence>
+        {errorMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-4 left-1/2 -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 mr-4"
+          >
+            {errorMessage}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
